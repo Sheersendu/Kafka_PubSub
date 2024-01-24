@@ -1,12 +1,11 @@
 package com.Kafka.PubSub.Models;
 
-import com.Kafka.PubSub.Enums.ItemTypes;
 import jakarta.persistence.*;
 import lombok.Data;
 
 @Data
-@Table(name = "Items")
-public class Items {
+@Table(name = "Item")
+public class Item {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
@@ -17,15 +16,8 @@ public class Items {
     private String itemDescription;
 
     @Column(name = "ITEMTYPE")
-    private ItemTypes itemType;
+    private String itemType;
 
     @Column(name = "ITEMPRICE")
     private Double itemPrice;
-
-//    public Items(String itemName, String itemDescription, ItemTypes itemType, Double itemPrice) {
-//        this.itemName = itemName;
-//        this.itemDescription = itemDescription;
-//        this.itemType = itemType;
-//        this.itemPrice = itemPrice;
-//    }
 }
