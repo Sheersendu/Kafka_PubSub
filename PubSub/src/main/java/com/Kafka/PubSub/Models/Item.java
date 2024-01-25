@@ -1,5 +1,6 @@
 package com.Kafka.PubSub.Models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -7,6 +8,7 @@ import lombok.Data;
 @Table(name = "Item")
 public class Item {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @JsonIgnore
     private Long id;
 
     @Column(name = "ITEMNAME")
