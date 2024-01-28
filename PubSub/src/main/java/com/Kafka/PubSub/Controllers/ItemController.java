@@ -2,12 +2,9 @@ package com.Kafka.PubSub.Controllers;
 
 import com.Kafka.PubSub.Models.Item;
 import com.Kafka.PubSub.Repositories.ItemRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.jdbc.core.BeanPropertyRowMapper;
-import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;

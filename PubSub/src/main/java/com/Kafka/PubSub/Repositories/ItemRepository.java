@@ -2,7 +2,9 @@ package com.Kafka.PubSub.Repositories;
 
 import com.Kafka.PubSub.Enums.ItemType;
 import com.Kafka.PubSub.Models.Item;
+import com.Kafka.PubSub.Producer.MessageProducer;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
@@ -13,6 +15,11 @@ import java.util.ArrayList;
 @Repository
 public class ItemRepository {
     private final JdbcTemplate jdbcTemplate;
+    @Autowired
+    private MessageProducer messageProducer;
+
+    @Value("${spring.kafka.topic-name}")
+    private String topicName;
 
     @Autowired
     public ItemRepository(JdbcTemplate jdbcTemplate) {
@@ -20,13 +27,16 @@ public class ItemRepository {
     }
 
     public ArrayList<Item> getAllItems() {
-        return (ArrayList<Item>) this.jdbcTemplate.query("SELECT * FROM ITEM;", new BeanPropertyRowMapper<>(Item.class));
+        messageProducer.sendMessage(topicName, "Fetching all item records!");
+        return (ArrayList<Item>) this.jdbcTemplate.query("SELECT ITEMNAME, ITEMDESCRIPTION, ITEMTYPE, ITEMPRICE FROM ITEM;", new BeanPropertyRowMapper<>(Item.class));
     }
 
     public void insertItems(Item item) {
         if (isValidItem(item)) {
             String query = "INSERT INTO Item (ITEMNAME, ITEMDESCRIPTION, ITEMTYPE, ITEMPRICE) VALUES ('" + item.getItemName() + "', '" + item.getItemDescription() + "', '" + item.getItemType() + "', " + item.getItemPrice() +");";
             this.jdbcTemplate.update(query);
+            String producerMessage = String.format("New Item: %s of type %s is recorded!", item.getItemName(), item.getItemType());
+            messageProducer.sendMessage(topicName, producerMessage);
         }
     }
 
