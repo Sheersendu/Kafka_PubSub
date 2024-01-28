@@ -46,11 +46,11 @@ public class ItemRepository {
         String itemType = item.getItemType();
         Double itemPrice = item.getItemPrice();
 
-        if (itemName == (null) || itemName.equals(""))
+        if (itemName == (null) || itemName.isEmpty())
         {
             throw new IllegalArgumentException("Item Name cannot be empty");
         }
-        if (itemDescription == (null) || itemDescription.equals(""))
+        if (itemDescription == (null) || itemDescription.isEmpty())
         {
             throw new IllegalArgumentException("Item Description cannot be empty");
         }
