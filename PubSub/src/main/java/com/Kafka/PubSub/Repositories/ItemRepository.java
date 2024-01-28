@@ -31,7 +31,7 @@ public class ItemRepository {
         return (ArrayList<Item>) this.jdbcTemplate.query("SELECT ITEMNAME, ITEMDESCRIPTION, ITEMTYPE, ITEMPRICE FROM ITEM;", new BeanPropertyRowMapper<>(Item.class));
     }
 
-    public void insertItems(Item item) {
+    public void insertItem(Item item) {
         if (isValidItem(item)) {
             String query = "INSERT INTO Item (ITEMNAME, ITEMDESCRIPTION, ITEMTYPE, ITEMPRICE) VALUES ('" + item.getItemName() + "', '" + item.getItemDescription() + "', '" + item.getItemType() + "', " + item.getItemPrice() +");";
             this.jdbcTemplate.update(query);

@@ -69,7 +69,7 @@ public class ItemRepositoryTest {
         item.setItemType(ItemType.APPAREL.toString());
         item.setItemPrice(1499.00);
 
-        itemRepository.insertItems(item);
+        itemRepository.insertItem(item);
         ArrayList<Item> itemList = itemRepository.getAllItems();
         int itemListLength = itemList.size();
         assertEquals(3, itemListLength);

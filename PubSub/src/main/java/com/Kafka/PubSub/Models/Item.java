@@ -1,25 +1,20 @@
 package com.Kafka.PubSub.Models;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import jakarta.persistence.*;
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
-@Data
-@Table(name = "Item")
+@Getter
+@Setter
 public class Item {
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     @JsonIgnore
     private Long id;
 
-    @Column(name = "ITEMNAME")
     private String itemName;
 
-    @Column(name = "ITEMDESCRIPTION")
     private String itemDescription;
 
-    @Column(name = "ITEMTYPE")
     private String itemType;
 
-    @Column(name = "ITEMPRICE")
     private Double itemPrice;
 }

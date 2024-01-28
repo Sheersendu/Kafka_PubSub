@@ -22,9 +22,9 @@ public class ItemController {
     }
 
     @PostMapping(value = "/items", consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity saveItems(@RequestBody Item item) {
+    public ResponseEntity saveItem(@RequestBody Item item) {
         try {
-            this.itemRepository.insertItems(item);
+            this.itemRepository.insertItem(item);
             return ResponseEntity.status(HttpStatus.CREATED).body("Item has been successfully inserted");
         }
         catch (Exception e) {
