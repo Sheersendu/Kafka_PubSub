@@ -39,7 +39,7 @@ This project demonstrates the integration of Spring Boot with Apache Kafka for b
 
 ## Project Structure
 
-- `src/main/java`: Contains the Java source code for the Spring Boot application.
+- `src/main/java/com/Kafka/PubSub`: Contains the Java source code for the Spring Boot application.
 - `docker-compose.yml`: Configuration file for Docker Compose, defining services (Zookeeper, Kafka, Spring App).
 
 ## Configuration
